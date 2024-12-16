@@ -38,10 +38,11 @@ export async function createPost(prevState, formData) {
 		throw new Error("faile to upload image");
 	}
 
+	revalidatePath("/", "layout");
 	redirect("/feed");
 }
 
 export async function UpdateToggleLikeStatus(postId) {
 	await updatePostLikeStatus(postId, 2);
-	revalidatePath("/feed");
+	revalidatePath("/", "layout");
 }
